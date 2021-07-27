@@ -165,7 +165,9 @@
       const thisProduct = this;
       
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
-      thisProduct.amountWidgetElem.addEventListener('updated', thisProduct.processOrder());
+      thisProduct.amountWidgetElem.addEventListener('updated', function() {
+        thisProduct.processOrder();
+      });
     }
   }
 
@@ -174,7 +176,7 @@
       const thisWidget = this;
 
       thisWidget.getElements(element);
-      thisWidget.setValue(thisWidget.input.value); // aby właściwość thisWidget.setValue miała wartość początkową, i aby mógł wykonać się if
+      thisWidget.setValue(settings.amountWidget.defaultValue); // aby właściwość thisWidget.setValue miała wartość początkową, i aby mógł wykonać się if
       thisWidget.initActions();
       console.log('AmountWidget:', thisWidget);
       console.log('constructor arguments', element); 
