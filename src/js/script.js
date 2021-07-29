@@ -328,16 +328,19 @@
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
     }
-    add(cartProduct) {
-      console.log(cartProduct);
-      const thisCart = this;
-      const generatedHTML = templates.cartProduct(cartProduct);
+    add(menuProduct) {
+      //console.log(cartProduct);
+      //const thisCart = this;
+      const generatedHTML = templates.cartProduct(menuProduct);
       const generatedDOM = utils.createDOMFromHTML(generatedHTML);
-      const cartContainer = document.querySelector(select.cart.prductList);
+      const cartContainer = document.querySelector(select.cart.productList);
       cartContainer.appendChild(generatedDOM);
-      console.log('adding product', cartProduct);
+      //console.log('adding product', cartProduct);
     }
   }
+
+
+
   const app = {
     initMenu: function () {
       const thisApp = this;
