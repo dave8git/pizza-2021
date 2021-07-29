@@ -203,21 +203,48 @@
 
       app.cart.add(thisProduct.prepareCartProduct());
     }
-    prepareCartProduct() {
+    prepareCartProduct(prepareCartProductParams()) {
       const thisProduct = this;
 
       const productSummary = {
         id: thisProduct.id,
-        name: thisProduct.name,
-        amount: thisProduct.amount,
+        name: thisProduct.data.name,
+        amount: thisProduct.amountWidget.value,
         priceSingle: thisProduct.priceSingle,
-        price: thisProduct.price,
+        price: thisProduct.data.price,
         params: {
-
+          
         }
         
       };
       return productSummary;
+    }
+    prepareCartProductParams(){
+      const thisProduct = this;
+      
+      const formData = utils.serializeFormToObject(thisProduct.form);
+      const params = {};
+      // for every category (param)...
+      for (let paramId in thisProduct.data.params) {
+        // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'...}
+        const param = thisProduct.data.params[paramId]; //param np. objekt z danymi np. labe: ...., type: ...., optioins: {...}
+        // for every option in this category 
+        params[paramId] = { 
+          label: param.label, 
+          options: {},
+        };
+        for (let optionId in param.options) {
+          // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true}
+          const option = param.options[optionId];
+          if (formData[paramId] && formData[paramId].includes(optionId)) {
+            params[paramId].options = { 
+              option: option, 
+            };
+          } 
+        }
+      }
+      
+      return params; 
     }
   }
 
