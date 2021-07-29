@@ -109,9 +109,8 @@
       thisProduct.element = utils.createDOMFromHTML(generatedHTML); /* create element using utils.createElementFromHTML */
       const menuContainer = document.querySelector(select.containerOf.menu); /* find menu cotainer */
       menuContainer.appendChild(thisProduct.element); /* add element to menu */
+
     }
-
-
 
     initAccordion() {
       const thisProduct = this;
@@ -199,11 +198,10 @@
     }
     addToCart() {
       const thisProduct = this;
-     
-
+    
       app.cart.add(thisProduct.prepareCartProduct());
     }
-    prepareCartProduct(prepareCartProductParams()) {
+    prepareCartProduct() {
       const thisProduct = this;
 
       const productSummary = {
@@ -212,9 +210,7 @@
         amount: thisProduct.amountWidget.value,
         priceSingle: thisProduct.priceSingle,
         price: thisProduct.data.price,
-        params: {
-          
-        }
+        params: thisProduct.prepareCartProductParams(),
         
       };
       return productSummary;
@@ -243,7 +239,7 @@
           } 
         }
       }
-      
+      console.log(params);
       return params; 
     }
   }
@@ -321,6 +317,7 @@
       thisCart.dom.wrapper = element;
 
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+      thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
     }
 
     initActions() {
@@ -331,10 +328,14 @@
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
     }
-    add(menuProduct) {
-      // const thisCart = this;
-
-      console.log('adding product', menuProduct);
+    add(cartProduct) {
+      console.log(cartProduct);
+      const thisCart = this;
+      const generatedHTML = templates.cartProduct(cartProduct);
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+      const cartContainer = document.querySelector(select.cart.prductList);
+      cartContainer.appendChild(generatedDOM);
+      console.log('adding product', cartProduct);
     }
   }
   const app = {
