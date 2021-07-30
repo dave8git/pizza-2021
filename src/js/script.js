@@ -225,21 +225,21 @@
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'...}
         const param = thisProduct.data.params[paramId]; //param np. objekt z danymi np. labe: ...., type: ...., optioins: {...}
         // for every option in this category 
+        console.log('dziala');
         params[paramId] = { 
           label: param.label, 
-          options: {},
+          options: [],
         };
         for (let optionId in param.options) {
+          //console.log('options', params[paramId].options);
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true}
-          const option = param.options[optionId];
+          //const option = param.options[optionId];
           if (formData[paramId] && formData[paramId].includes(optionId)) {
-            params[paramId].options = { 
-              option: option, 
-            };
+            params[paramId].options.push(optionId);
+           
           } 
         }
       }
-      console.log(params);
       return params; 
     }
   }
