@@ -209,7 +209,7 @@
         name: thisProduct.data.name,
         amount: thisProduct.amountWidget.value,
         priceSingle: thisProduct.priceSingle,
-        price: thisProduct.data.price,
+        price: thisProduct.priceSingle,
         params: thisProduct.prepareCartProductParams(),
         
       };
@@ -225,7 +225,6 @@
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'...}
         const param = thisProduct.data.params[paramId]; //param np. objekt z danymi np. labe: ...., type: ...., optioins: {...}
         // for every option in this category 
-        console.log('dziala');
         params[paramId] = { 
           label: param.label, 
           options: [],
