@@ -257,7 +257,9 @@
       const thisWidget = this;
 
       thisWidget.element = element;
+      console.log('thisWidget.element', thisWidget.element);
       thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
+      console.log('thisWidget.input', thisWidget.input);
       thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
       thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
     }
@@ -347,12 +349,13 @@
       const thisCartProduct = this;
       thisCartProduct.id = menuProduct.id,
       thisCartProduct.name = menuProduct.name,
-      thisCartProduct.amount = menuProduct.value,
-      thisCartProduct.priceSingle = menuProduct.priceSingle,
       thisCartProduct.price = menuProduct.priceSingle,
-      thisCartProduct.initAmountWidget();
+      thisCartProduct.priceSingle = menuProduct.priceSingle,
+      thisCartProduct.amount = menuProduct.price,
       
       thisCartProduct.getElements(element);
+      thisCartProduct.initAmountWidget();
+      
 
       console.log(thisCartProduct);
     }
@@ -361,7 +364,7 @@
       thisCartProduct.dom = {};
       thisCartProduct.dom.wrapper = element;
       thisCartProduct.dom.amountWidget = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.amountWidget);
-      thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.amountWidget);
+      thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price);
       thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
       thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
     }
@@ -369,10 +372,10 @@
     initAmountWidget() {
       const thisCartProduct = this;
 
-      thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.amountWidgetElem);
-      thisCartProduct.amountWidgetElem.addEventListener('updated', function() {
-        thisCartProduct.amount = thisCartProduct.amountWidget.amount;
-        thisCartProduct.price *= thisCartProduct.amountWidget.amount;
+      thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
+      thisCartProduct.dom.amountWidget.addEventListener('updated', function() {
+        thisCartProduct.price = thisCartProduct.amountWidget.value * thisCartProduct.priceSingle;
+        thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
       });
 
     }
