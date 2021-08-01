@@ -357,9 +357,9 @@
         thisCart.subTotalPrice += product.price;
         console.log('cartProduct', product);
       }
-   
-      thisCart.totalPrice = thisCart.subTotalPrice + thisCart.deliveryFee;
-     
+      if(thisCart.totalNumber) {
+        thisCart.totalPrice = thisCart.subTotalPrice + thisCart.deliveryFee;
+      }
       thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice;
       thisCart.dom.subTotalPrice.innerHTML = thisCart.subTotalPrice;
       thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber; 
