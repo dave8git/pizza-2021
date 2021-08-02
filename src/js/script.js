@@ -213,6 +213,7 @@
         params: thisProduct.prepareCartProductParams(),
         
       };
+      
       return productSummary;
     }
     prepareCartProductParams(){
@@ -324,7 +325,8 @@
       thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
       thisCart.dom.deliveryFee = thisCart.dom.wrapper.querySelector(select.cart.deliveryFee);
       thisCart.dom.subTotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subtotalPrice);
-      thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelector(select.cart.totalPrice);
+      thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice);
+      
       thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
       thisCart.dom.remove = thisCart.dom.wrapper.querySelector(select.cartProduct.remove);
     }
@@ -363,17 +365,28 @@
 
       for (let product of thisCart.products) {
         thisCart.totalNumber += product.amount;
+        console.log('product.amount', product.amount);
         thisCart.subTotalPrice += product.price;
         console.log('cartProduct', product);
+        console.log('thisCart.totalNumber', thisCart.totalNumber);
       }
+     
       if(thisCart.totalNumber) {
         thisCart.totalPrice = thisCart.subTotalPrice + thisCart.deliveryFee;
       }
-      thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice;
+      //console.log('thisCart.totalPrice', thisCart.dom.totalPrice);
+      for (let totalPrice of thisCart.dom.totalPrice) {
+        totalPrice.innerHTML = thisCart.totalPrice;
+      }
+      console.log('thisCart', thisCart);
+      //thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice;
+      
       thisCart.dom.subTotalPrice.innerHTML = thisCart.subTotalPrice;
-      thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber; 
+      thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
       thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
-
+      console.log('thisCart.dom.totalNumber', thisCart.dom.totalNumber);
+      console.log('thisCart.totalNumber', thisCart.totalNumber);
+      console.log('thisCart', thisCart);
     }
     remove(cartProduct) {
       const thisCart = this;
@@ -394,7 +407,7 @@
       thisCartProduct.name = menuProduct.name,
       thisCartProduct.price = menuProduct.price,
       thisCartProduct.priceSingle = menuProduct.priceSingle,
-      thisCartProduct.amount = menuProduct.price,
+      thisCartProduct.amount = menuProduct.amount,
       
       thisCartProduct.getElements(element);
       thisCartProduct.initAmountWidget();
