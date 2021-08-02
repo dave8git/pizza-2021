@@ -373,6 +373,8 @@
      
       if(thisCart.totalNumber) {
         thisCart.totalPrice = thisCart.subTotalPrice + thisCart.deliveryFee;
+      } else {
+        thisCart.totalPrice = 0;
       }
       //console.log('thisCart.totalPrice', thisCart.dom.totalPrice);
       for (let totalPrice of thisCart.dom.totalPrice) {
