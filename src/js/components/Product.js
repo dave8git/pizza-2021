@@ -42,16 +42,9 @@ class Product {
   }
   renderInMenu() {
     const thisProduct = this;
-    const generatedHTML = templates.menuProduct(
-      thisProduct.data
-    ); /* generate HTML based on template */
-    thisProduct.element =
-      utils.createDOMFromHTML(
-        generatedHTML
-      ); /* create element using utils.createElementFromHTML */
-    const menuContainer = document.querySelector(
-      select.containerOf.menu
-    ); /* find menu cotainer */
+    const generatedHTML = templates.menuProduct(thisProduct.data); /* generate HTML based on template */
+    thisProduct.element = utils.createDOMFromHTML(generatedHTML); /* create element using utils.createElementFromHTML */
+    const menuContainer = document.querySelector(select.containerOf.menu); /* find menu cotainer */
     menuContainer.appendChild(thisProduct.element); /* add element to menu */
   }
 
@@ -133,10 +126,11 @@ class Product {
         }
       }
     }
+    thisProduct.priceSingle = price;
     /* multiply price by amount */
     price *= thisProduct.amountWidget.value;
     // update calculated price in the HTML
-    thisProduct.priceSingle = price;
+    thisProduct.price = price;
     thisProduct.priceElem.innerHTML = price;
   }
   initAmountWidget() {

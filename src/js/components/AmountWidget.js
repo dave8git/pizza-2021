@@ -5,7 +5,7 @@ class AmountWidget {
     const thisWidget = this;
 
     thisWidget.getElements(element);
-    thisWidget.setValue(settings.amountWidget.defaultValue); // aby właściwość thisWidget.setValue miała wartość początkową, i aby mógł wykonać się if
+    thisWidget.setValue(thisWidget.input.value || settings.amountWidget.defaultValue); // aby właściwość thisWidget.setValue miała wartość początkową, i aby mógł wykonać się if
     thisWidget.initActions();
     // console.log('AmountWidget:', thisWidget);
     // console.log('constructor arguments', element);
