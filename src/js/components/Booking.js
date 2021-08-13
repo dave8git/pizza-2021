@@ -16,7 +16,7 @@ class Booking {
 
     const params = {
       booking: [
-
+        settings.db.dateStartParamKey + '=' + thisBooking.datePicker.minDate
       ],
       eventsCurrent: [
 
