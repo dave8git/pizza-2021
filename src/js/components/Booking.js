@@ -11,12 +11,12 @@ class Booking {
     thisBooking.getData(); 
   }
 
-  getData(){
+  getData() {
     const thisBooking = this;
 
     const startDateParam = settings.db.dateStartParamKey + '=' + utils.dateToStr(thisBooking.datePicker.minDate);
     const endDateParam = settings.db.dateEndParamKey + '=' + utils.dateToStr(thisBooking.datePicker.maxDate);
-    
+
     const params = {
       booking: [
         startDateParam,
@@ -32,39 +32,38 @@ class Booking {
         endDateParam,
       ],
     };
-    // console.log('getData params', params);
+    //console.log('getData params', params);
 
     const urls = {
-      booking:       settings.db.url + '/' + settings.db.booking
-                                     + '?' + params.booking.join('&'),
-      eventsCurrent: settings.db.url + '/' + settings.db.event  
-                                     + '?' + params.eventsCurrent.join('&'),
-      eventsRepeat:  settings.db.url + '/' + settings.db.event
-                                     + '?' + params.eventsRepeat.join('&'),
+      booking:       settings.db.url + '/' + settings.db.booking + '?' + params.booking.join('&'),
+      eventsCurrent: settings.db.url + '/' + settings.db.event + '?' + params.eventsCurrent.join('&'),
+      eventsRepeat:  settings.db.url + '/' + settings.db.event + '?' + params.eventsRepeat.join('&'),
+      
     };
-    // console.log('getData urls', urls);
+    console.log('urls.booking:', urls.booking);
+    console.log('urls.eventsCurrent:', urls.eventsCurrent);
+    console.log('urls.eventsRepeat:', urls.eventsRepeat);
+
     Promise.all([
       fetch(urls.booking),
       fetch(urls.eventsCurrent),
       fetch(urls.eventsRepeat),
-    ])
-      .then(function(allResponses){
-        const bookingsResponse = allResponses[0];
-        const eventsCurrentResponse = allResponses[1];
-        const eventsRepeatResponse = allResponses[2];
-        return Promise.all([
-          bookingsResponse.json(),
-          eventsCurrentResponse.json(),
-          eventsRepeatResponse.json(),
-        ]);
-      })
-      .then(function([bookings, eventsCurrent, eventsRepeat]){
-        console.log(bookings);
-        console.log(eventsCurrent);
-        console.log(eventsRepeat);
-      });
-   
+    ]).then(function(allResponses) {
+      const bookingsResponse = allResponses[0];
+      const eventsCurrentResponse = allResponses[1];
+      const eventsRepeatResponse = allResponses[2];
+      return Promise.all([
+        bookingsResponse.json(),
+        eventsCurrentResponse.json(),
+        eventsRepeatResponse.json(),
+      ]);
+    }).then(function([bookings, eventsCurrent, eventsRepeat]){
+      console.log('bookings', bookings);
+      console.log('eventsCurrent', eventsCurrent);
+      console.log('eventsRepeat', eventsRepeat);
+    });  
   }
+  
 
   parseData(bookings, eventsCurrent, eventsRepeat) {
     const thisBooking = this; //

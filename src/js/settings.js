@@ -92,10 +92,23 @@ export const settings = {
   amountWidget: {
     defaultValue: 1,
     defaultMin: 1,
-    defaultMax: 9,
-  },
+    defaultMax: 10,
+  }, 
   cart: {
     defaultDeliveryFee: 20,
+  },
+  db: {
+    url: '//localhost:3131',
+    products: 'products',
+    orders: 'orders',
+    product: 'product',
+    order: 'order',
+    booking: 'booking',
+    event: 'events',
+    dateStartParamKey: 'date_gte',
+    dateEndParamKey: 'date_lte',
+    notRepeatParam: 'repeat=false',
+    repeatParam: 'repeat_ne=false',
   },
   hours: {
     open: 12,
@@ -107,20 +120,9 @@ export const settings = {
   booking: {
     tableIdAttribute: 'data-table',
   },
-  db: {
-    url: '//localhost:3131',
-    products: 'products',
-    orders: 'orders',
-    product: 'product',
-    order: 'orders',
-    booking: 'bookings',
-    event: 'events',
-    dateStartParamKey: 'date_gte',
-    dateEndParamKey: 'date_lte',
-    notRepeatParam: 'repeat=false',
-    repeatParam: 'repeat_ne=false',
-  },
+  
 };
+  
 
 export const templates = {
   menuProduct: Handlebars.compile(
