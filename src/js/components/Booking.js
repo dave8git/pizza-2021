@@ -43,17 +43,26 @@ class Booking {
                                      + '?' + params.eventsRepeat.join('&'),
     };
     // console.log('getData urls', urls);
-
-    fetch(urls.booking)
-      .then(function(bookingsResponse) {
-        return bookingsResponse.json();
+    Promise.all([
+      fetch(urls.booking),
+      fetch(urls.eventsCurrent),
+      fetch(urls.eventsRepeat),
+    ])
+      .then(function(allResponses){
+        const bookingsResponse = allResponses[0];
+        const eventsCurrentResponse = allResponses[1];
+        const eventsRepeatResponse = allResponses[2];
+        return Promise.all([
+          bookingsResponse.json(),
+          eventsCurrentResponse.json(),
+          eventsRepeatResponse.json(),
+        ]);
       })
-      .then(function(bookings){
-        console.log('bookings', bookings);
+      .then(function([bookings, eventsCurrent, eventsRepeat]){
+        console.log(bookings);
+        console.log(eventsCurrent);
+        console.log(eventsRepeat);
       });
-
-    //console.log('getData', params);
-
    
   }
 
