@@ -11,16 +11,16 @@ class Booking {
     thisBooking.getData(); 
   }
 
-  getData() {
+  getData(){
     const thisBooking = this;
 
-    const startDateParam =  settings.db.dateStartParamKey + '=' + utils.dateToStr(thisBooking.datePicker.minDate);
+    const startDateParam = settings.db.dateStartParamKey + '=' + utils.dateToStr(thisBooking.datePicker.minDate);
     const endDateParam = settings.db.dateEndParamKey + '=' + utils.dateToStr(thisBooking.datePicker.maxDate);
-
+    
     const params = {
       booking: [
         startDateParam,
-        endDateParam, 
+        endDateParam,
       ],
       eventsCurrent: [
         settings.db.notRepeatParam,
@@ -32,37 +32,27 @@ class Booking {
         endDateParam,
       ],
     };
+    // console.log('getData params', params);
+
     const urls = {
-      booking: settings.db.url + '/' + settings.db.booking + '?' + params.booking.join('&'),
-      eventsCurrent: settings.db.url + '/' + settings.db.event + '?' + params.eventsCurrent.join('&'),
-      eventsRepeat: settings.db.url + '/' + settings.db.booking + '?' + params.eventsRepeat.join('&'),
+      booking:       settings.db.url + '/' + settings.db.booking
+                                     + '?' + params.booking.join('&'),
+      eventsCurrent: settings.db.url + '/' + settings.db.event  
+                                     + '?' + params.eventsCurrent.join('&'),
+      eventsRepeat:  settings.db.url + '/' + settings.db.event
+                                     + '?' + params.eventsRepeat.join('&'),
     };
-    console.log(urls, params);
-      
-    Promise.all([
-      fetch(urls.booking),
-      fetch(urls.eventsCurrent),
-      fetch(urls.eventsRepeat),
-    ])
-      .then(function(allResponse){
-        const bookingsResponse = allResponse[0];
-        const eventsCurrentResponse = allResponse[1];
-        const eventsRepeatResponse = allResponse[2];
-        return Promise.all([
-          bookingsResponse.json(),
-          eventsCurrentResponse.json(),
-          eventsRepeatResponse.json(),
-        ]);
+    // console.log('getData urls', urls);
+
+    fetch(urls.booking)
+      .then(function(bookingsResponse) {
+        return bookingsResponse.json();
       })
-      .then(function([bookings, eventsCurrent, eventsRepeat]){
-
-        // console.log(bookings);
-        // console.log(eventsCurrent);
-        // console.log(eventsRepeat);
+      .then(function(bookings){
+        console.log('bookings', bookings);
       });
-    
 
-    console.log('getData', params);
+    //console.log('getData', params);
 
    
   }
@@ -153,7 +143,7 @@ class Booking {
     const generatedHTML = templates.bookingWidget();
     thisBooking.dom = {};
     thisBooking.dom.wrapper = element;
-    //thisBooking.dom.elem = utils.createDOMFromHTML(generatedHTML);
+    //thisBooking.dom.elem = utils.createDOMFromHTML(generatedHTML); 
     //thisBooking.dom.wrapper = thisBooking.dom.element.querySelector(element);
     thisBooking.dom.wrapper.innerHTML = generatedHTML;
     thisBooking.dom.peopleAmount = element.querySelector(select.booking.peopleAmount);
