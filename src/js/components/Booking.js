@@ -106,13 +106,15 @@ class Booking {
 
     const startHour = utils.hourToNumber(hour);
 
-    for(let hourBlock = 0; startHour < startHour + duration; hourBlock += 0.5) {
-      //console.log('loop', hourBlock); 
-      if(typeof thisBooking.booked[date][hourBlock] == 'undefined') {
+    for(let hourBlock = startHour; hourBlock < startHour + duration; hourBlock += 0.5){
+      // console.log('loop', hourBlock);
+      
+      if(typeof thisBooking.booked[date][hourBlock] == 'undefined'){
         thisBooking.booked[date][hourBlock] = [];
       }
   
       thisBooking.booked[date][hourBlock].push(table);
+  
     }
   }
 
@@ -161,7 +163,7 @@ class Booking {
     thisBooking.dom.datePickerInput = element.querySelector(select.widgets.datePicker.wrapper);
     thisBooking.dom.hourPickerInput = element.querySelector(select.widgets.hourPicker.wrapper);
 
-    thisBooking.dom.tables = thisBooking.dom.element.querySelectorAll(select.booking.tables);
+    thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
   }
   initWidgets() {
     const thisBooking = this;
