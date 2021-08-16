@@ -58,12 +58,14 @@ class Booking {
         eventsRepeatResponse.json(),
       ]);
     }).then(function([bookings, eventsCurrent, eventsRepeat]){
-      console.log('bookings', bookings);
-      console.log('eventsCurrent', eventsCurrent);
-      console.log('eventsRepeat', eventsRepeat);
+    //   console.log('bookings', bookings);
+    //   console.log('eventsCurrent', eventsCurrent);
+    //   console.log('eventsRepeat', eventsRepeat);
+      thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
     });  
   }
   
+
 
   parseData(bookings, eventsCurrent, eventsRepeat) {
     const thisBooking = this; //
@@ -89,11 +91,11 @@ class Booking {
         } 
       }
     }
-    console.log('thisBooking.booked', thisBooking.booked);
+    //console.log('thisBooking.booked', thisBooking.booked);
 
     thisBooking.updateDOM(); 
   }
-
+ 
   makeBooked(date, hour, duration, table) {
     const thisBooking = this;
 
@@ -159,7 +161,7 @@ class Booking {
     thisBooking.dom.datePickerInput = element.querySelector(select.widgets.datePicker.wrapper);
     thisBooking.dom.hourPickerInput = element.querySelector(select.widgets.hourPicker.wrapper);
 
-    thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+    thisBooking.dom.tables = thisBooking.dom.element.querySelectorAll(select.booking.tables);
   }
   initWidgets() {
     const thisBooking = this;
