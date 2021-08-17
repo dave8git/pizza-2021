@@ -2,6 +2,7 @@ import {select, settings, templates, classNames} from '../settings.js';
 import AmountWidget from './AmountWidget.js';
 import DatePicker from './DatePicker.js';
 import {utils} from '../utils.js';
+import HourPicker from './HourPicker.js';
 
 class Booking {
   constructor(element) {
@@ -124,6 +125,7 @@ class Booking {
     thisBooking.date = thisBooking.datePicker.value; 
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
 
+    console.log('thisBooking.hourPicker.value',thisBooking.hourPicker.value);
     let allAvailable = false; 
 
     if(typeof thisBooking.booked[thisBooking.date] == 'undefined' 
@@ -176,9 +178,9 @@ class Booking {
     thisBooking.datePicker = new DatePicker(
       thisBooking.dom.datePickerInput
     );
-    // thisBooking.hourPicker = new HourPicker(
-    //   thisBooking.dom.hourPickerInput
-    // );
+    thisBooking.hourPicker = new HourPicker(
+      thisBooking.dom.hourPickerInput
+    );
     thisBooking.dom.wrapper.addEventListener('updated', function(){
       thisBooking.updateDOM();
     });
