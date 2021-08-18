@@ -229,29 +229,23 @@ class Booking {
   }
 
   sendBooking() {
-
     const thisBooking = this;
-
     const url = settings.db.url + '/' + settings.db.booking;
+    console.log(url);
 
     const payload = {
-      date: thisBooking.datePicker.value,
+      date: thisBooking.date,
       hour: thisBooking.hourPicker.value,
-      table: thisBooking.selectedTable,
-      duration: parseInt(thisBooking.peopleAmount.value),
-      ppl: parseInt(thisBooking.hoursAmount.value),
-      starters: [],
+      table: thisBooking.tableID,
+      duration: thisBooking.hoursAmount.value,
+      ppl: thisBooking.peopleAmount.value,
       phone: thisBooking.dom.phone.value,
-      address: thisBooking.dom.address.value,
+      mail: thisBooking.dom.address.value,
+      starters: []
     };
+  
     console.log('payload', payload);
-
-    for (let starter of thisBooking.starters) {
-      if (starter.checked == true) {
-        payload.starters.push(starter.value);
-      }
-    }
-
+ 
     const options = {
       method: 'POST',
       headers: {
@@ -260,12 +254,12 @@ class Booking {
       body: JSON.stringify(payload),
     };
 
-    fetch(url, options)
-      .then(function(response){
-        return response.json();
-      }).then(function(parsedResponse){
-        console.log('parsedResponse', parsedResponse);
-      });
+    fetch(url, options).then(function (response) {
+      return response.json();
+    }).then(function (parsedResponse) {
+      console.log('parsedResponse', parsedResponse);
+      thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
+    });
   }
 }
 
