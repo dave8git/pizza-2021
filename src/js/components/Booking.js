@@ -167,7 +167,9 @@ class Booking {
     thisBooking.dom.hourPickerInput = element.querySelector(select.widgets.hourPicker.wrapper);
     thisBooking.dom.form = thisBooking.dom.wrapper.querySelector(select.booking.form);
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
-    
+    thisBooking.dom.starters = thisBooking.dom.wrapper.querySelectorAll(select.booking.starters);
+    thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
+    thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.address);
     thisBooking.dom.tablesWrapper = thisBooking.dom.wrapper.querySelector('.floor-plan');
 
   }
@@ -192,9 +194,10 @@ class Booking {
     thisBooking.dom.tablesWrapper.addEventListener('click', function (event){
       thisBooking.initTables(event); 
     });
-    thisBooking.dom.form.addEventListener('submit', function (event) {
+    thisBooking.dom.form.addEventListener('click', function (event) {
       event.preventDefault();
       thisBooking.sendBooking();
+      console.log('submit');
     });
   }
   initTables(e) {
@@ -241,6 +244,7 @@ class Booking {
       phone: thisBooking.dom.phone.value,
       address: thisBooking.dom.address.value,
     };
+    console.log('payload', payload);
 
     for (let starter of thisBooking.starters) {
       if (starter.checked == true) {
