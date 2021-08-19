@@ -234,17 +234,23 @@ class Booking {
     const url = settings.db.url + '/' + settings.db.booking;
     console.log('url', url);
 
+    for (let starter of thisBooking.starters) {
+      if (starter.checked == true) {
+        payload.starters.push(starter.value);
+      }
+    }
+      
     const payload = {
       date: thisBooking.date,
       hour: thisBooking.hourPicker.value,
-      table: thisBooking.selectedTable,
+      table: parseInt(thisBooking.selectedTable),
       duration: thisBooking.hoursAmount.value,
       ppl: thisBooking.peopleAmount.value,
       phone: thisBooking.dom.phone.value,
       mail: thisBooking.dom.address.value,
       starters: []
     };
-  
+
     console.log('payload', payload);
  
     const options = {
