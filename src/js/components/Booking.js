@@ -77,6 +77,7 @@ class Booking {
 
     for(let item of bookings) {
       thisBooking.makeBooked(item.date, item.hour, item.duration, item.table); 
+      console.log('item.table', item.table);
     }
 
     for(let item of eventsCurrent) {
@@ -231,12 +232,12 @@ class Booking {
   sendBooking() {
     const thisBooking = this;
     const url = settings.db.url + '/' + settings.db.booking;
-    console.log(url);
+    console.log('url', url);
 
     const payload = {
       date: thisBooking.date,
       hour: thisBooking.hourPicker.value,
-      table: thisBooking.tableID,
+      table: thisBooking.selectedTable,
       duration: thisBooking.hoursAmount.value,
       ppl: thisBooking.peopleAmount.value,
       phone: thisBooking.dom.phone.value,
@@ -259,6 +260,7 @@ class Booking {
     }).then(function (parsedResponse) {
       console.log('parsedResponse', parsedResponse);
       thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
+      console.log('post działa');
     });
   }
 }
