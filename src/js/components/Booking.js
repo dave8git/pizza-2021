@@ -198,6 +198,7 @@ class Booking {
     thisBooking.dom.form.addEventListener('click', function (event) {
       event.preventDefault();
       thisBooking.sendBooking();
+      thisBooking.updateDOM();
       console.log('submit');
     });
   }
@@ -233,12 +234,6 @@ class Booking {
     const thisBooking = this;
     const url = settings.db.url + '/' + settings.db.booking;
     console.log('url', url);
-
-    for (let starter of thisBooking.starters) {
-      if (starter.checked == true) {
-        payload.starters.push(starter.value);
-      }
-    }
       
     const payload = {
       date: thisBooking.date,
@@ -251,6 +246,12 @@ class Booking {
       starters: []
     };
 
+    for (let starter of thisBooking.dom.starters) {
+      if (starter.checked == true) {
+        payload.starters.push(starter.value);
+      }
+    }
+      
     console.log('payload', payload);
  
     const options = {
