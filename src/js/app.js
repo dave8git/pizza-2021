@@ -9,20 +9,23 @@ const app = {
     const thisApp = this;
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
+    console.log(thisApp.pages);
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
     const idFromHash = window.location.hash.replace('#/', '');
-    //console.log('idFromHash', idFromHash);
+    console.log('idFromHash', idFromHash);
 
     let pageMatchingHash = thisApp.pages[0].id;
 
     for(let page of thisApp.pages) {
       if(page.id === idFromHash) {
         pageMatchingHash = page.id;
+        console.log('pageMatchingHash', pageMatchingHash);
         break;
       }
     }
     thisApp.activatePage(pageMatchingHash); 
     for(let link of thisApp.navLinks) {
+      console.log('navLinks link', link);
       link.addEventListener('click', function(event) {
         const clickedElement = this;
         event.preventDefault();
