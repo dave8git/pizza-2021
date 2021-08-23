@@ -162,6 +162,7 @@ h5 {
   height: 206px;
   width: 100%;
   overflow: hidden;
+  border-radius: 5px;
 }
 
 img {
@@ -179,7 +180,7 @@ img {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.4);
   width: 100%;
-  height: 99%;
+  height: 100%;
   z-index: 2;
   top: 0;
   right: 0;
