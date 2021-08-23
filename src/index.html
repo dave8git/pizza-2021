@@ -7,6 +7,7 @@
   <title>Pizzeria</title>
   <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="./vendor/range-slider.min.css">
   <link rel="stylesheet" href="css/style.css">
@@ -63,7 +64,7 @@
   </header>
   <div id="pages">
     <section id="home">
-      <div class="home-wrapper container"></div>
+      <div class="home-wrapper container-home"></div>
     </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
@@ -73,8 +74,130 @@
     </section>
   </div>
   <script id="template-home" type="text/x-handlebars-template">
-    <div class="container test-background width-100">test</div>
-    <div>drugi test</div>
+    <section id="home">
+      <div class="home-wrapper home-container">
+        <section class="intro">
+          <div class="container-normal">
+              <div class="intro-row">
+              <div class="wrapper-picture-seciton image secondary-nav">
+                  <img class="image__img" src="\images\booking\pizza-1.jpg" alt="pizza">
+                  <a href="#order">
+                    <div class="image__overlay">
+                      <div class="image__title">ORDER ONLINE</div>
+                       <p class="image__description">
+                           Here we have a brick wall.
+                       </p>
+                  </div>
+                </a>
+              </div>
+              <div class="wrapper-picture-seciton image secondary-nav">
+                  <img class="image__img" src="\images\booking\pizza-2.jpg" alt="pizza">
+                  <a href="#booking">
+                  <div class="image__overlay">
+                      <div class="image__title">BOOK A TABLE</div>
+                       <p class="image__description">
+                           Here we have a brick wall.
+                       </p>
+                  </div>
+                </a>
+              </div>
+
+              </div>
+              <div class="intro-row flex-column flex-center hello-intro-row">
+                  <h1>Opening Hours:</h1>
+                  <h5>TUE SUN 12PM 12AM</h5>
+              </div>
+          </div>
+     </section>
+     <div id="carouselExampleSlidesOnly" class="carousel slide container-normal" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="display-flex margin-photo-text">
+              <img src="\images\booking\pizza-3.jpg" class="" alt="pizza">
+                  <div class="inner-test-section">
+                      <h5>Kiepska obsługa!</h5>
+                      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam, dolorum iure libero dolor reiciendis repellat ad velit aspernatur id veritatis?</p>
+                      <p>- Marcin Śpiewak</p>
+                  </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+          <div class="display-flex margin-photo-text">
+            <img src="\images\booking\pizza-3.jpg" class="" alt="pizza">
+            <div class="inner-test-section">
+              <h5>Tacy sobie ludzie!</h5>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam, dolorum iure libero dolor reiciendis repellat ad velit aspernatur id veritatis?</p>
+              <p>- Michael Tutanhamon</p>
+            </div>
+          </div>
+      </div>
+      <div class="carousel-item">
+          <div class="display-flex margin-photo-text">
+              <img src="\images\booking\pizza-3.jpg" class="" alt="pizza">
+              <div class="inner-test-section">
+                  <h5>Średnie jedzenie!</h5>
+                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quibusdam, dolorum iure libero dolor reiciendis repellat ad velit aspernatur id veritatis?</p>
+                  <p>- Dorothy Ramzes</p>
+              </div>
+          </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+      </div>
+    </div>
+
+      <section class="gallery">
+          <div class="container-normal">
+              <div class="gallery-area">
+                  <div class="single-img">
+                      <img src="\images\booking\pizza-4.jpg" alt="">
+                      <div class="overlay">
+                        <i class="fas fa-pizza-slice"></i>
+                    </div>
+                  </div>
+                  <div class="single-img">
+                      <img src="\images\booking\pizza-5.jpg" alt="">
+                      <div class="overlay">
+                        <i class="fas fa-pizza-slice"></i>
+                    </div>
+                  </div>
+                  <div class="single-img">
+                      <img src="\images\booking\pizza-6.jpg" alt="">
+                      <div class="overlay">
+                        <i class="fas fa-pizza-slice"></i>
+                    </div>
+                  </div>
+                  <div class="single-img">
+                      <img src="\images\booking\pizza-7.jpg" alt="">
+                      <div class="overlay">
+                        <i class="fas fa-pizza-slice"></i>
+                    </div>
+                  </div>
+                  <div class="single-img">
+                      <img src="\images\booking\pizza-8.jpg" alt="">
+                      <div class="overlay">
+                        <i class="fas fa-pizza-slice"></i>
+                    </div>
+                  </div>
+                  <div class="single-img">
+                      <img src="\images\booking\pizza-9.jpg" alt="">
+                      <div class="overlay">
+                        <i class="fas fa-pizza-slice"></i>
+                    </div>
+                  </div>
+              </div>
+              <a class="red-links">See more on our instachłam</a>
+          </div>
+          
+      </div>
+      
+    </section>
   </script>
 
   <script id="template-cart-product" type="text/x-handlebars-template">
@@ -251,6 +374,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="./vendor/range-slider.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
   <script src="js/app.js" type="module"></script>
 </body>
 </html>
