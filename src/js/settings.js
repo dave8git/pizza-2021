@@ -51,7 +51,7 @@ export const select = {
     address: '[name="address"]',
   },
   nav: {
-    links: '.main-nav a, image__img a',
+    links: '.main-nav a, .click__img',
   },
   cart: {
     productList: '.cart__order-summary',
