@@ -10,7 +10,7 @@ const app = {
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     console.log(thisApp.pages);
-    thisApp.navLinks = document.querySelectorAll('#order');
+    thisApp.navLinks = document.querySelectorAll(select.nav.links);
     console.log('thisApp.navLinks', thisApp.navLinks);
     const idFromHash = window.location.hash.replace('#/', '');
     console.log('idFromHash', idFromHash);
@@ -125,12 +125,12 @@ const app = {
     console.log('settings:', settings);
     console.log('templates:', templates);
 
-    thisApp.initPages();
     thisApp.initData();
     thisApp.initMenu();
     thisApp.initCart();
     thisApp.initBooking();
     thisApp.initHome(); 
+    thisApp.initPages();
   },
 };
 
